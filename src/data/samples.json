@@ -1,0 +1,107 @@
+[
+  {
+    "errorMessage": "Uncaught TypeError: Cannot read properties of undefined (reading 'map')\n    at Component (App.jsx:42:15)",
+    "fix": "Add optional chaining or guard: items?.map(...) or ensure items is always an array (e.g. default to []) before the component renders.",
+    "tags": ["react", "javascript"],
+    "timeLost": 15,
+    "createdAt": 1709000000000
+  },
+  {
+    "errorMessage": "Warning: Each child in a list should have a unique \"key\" prop.\n    in Item (at List.jsx:12:4)",
+    "fix": "Pass a stable unique key to each list item, e.g. key={item.id} or key={item.id ?? index}. Avoid using array index as key if list can reorder.",
+    "tags": ["react"],
+    "timeLost": 5,
+    "createdAt": 1709086400000
+  },
+  {
+    "errorMessage": "SyntaxError: Unexpected token '<' (at main.jsx:1:1)",
+    "fix": "Usually means JSX is being run without a transform. Ensure the file extension is .jsx/.tsx and Vite (or your bundler) is configured to use the React plugin so JSX is compiled.",
+    "tags": ["react", "vite", "javascript"],
+    "timeLost": 25,
+    "createdAt": 1709172800000
+  },
+  {
+    "errorMessage": "Module not found: Error: Can't resolve 'fs' in '.../node_modules/some-package'\nBREAKING CHANGE: webpack 5 no longer polyfills Node core modules",
+    "fix": "Add resolve.fallback in Vite: resolve: { fallback: { fs: false } }. Or use a browser-compatible version of the package / different package.",
+    "tags": ["vite", "webpack", "node"],
+    "timeLost": 45,
+    "createdAt": 1709259200000
+  },
+  {
+    "errorMessage": "IndentationError: expected an indented block after function definition on line 3\n  File \"script.py\", line 4",
+    "fix": "Add a body to the function. Use 'pass' as a placeholder or indent the next line(s) under the def.",
+    "tags": ["python"],
+    "timeLost": 3,
+    "createdAt": 1709345600000
+  },
+  {
+    "errorMessage": "Error: Hydration failed because the initial UI does not match what was rendered on the server.\n  at div\n  at App",
+    "fix": "Server and client must render the same HTML. Typical causes: Date.now() or random values, browser-only APIs (window, localStorage) during first render. Use useEffect for client-only data, suppress hydration warning with suppressHydrationWarning only when intentional (e.g. timestamps), or render a placeholder until mounted.",
+    "tags": ["react", "ssr", "hydration", "next"],
+    "timeLost": 60,
+    "createdAt": 1709432000000
+  },
+  {
+    "errorMessage": "NG01052: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'false'. Current value: 'true'.",
+    "fix": "Angular change detection ran and saw a value change in the same cycle. Fix: update the value in a later tick (setTimeout, or after async), use ChangeDetectorRef.detectChanges() in a safe place, or move the update to a child and ensure one-way data flow. Avoid changing state in getters or in template expressions.",
+    "tags": ["angular", "change-detection"],
+    "timeLost": 45,
+    "createdAt": 1709518400000
+  },
+  {
+    "errorMessage": "TypeError: Cannot read properties of null (reading 'userId')\n  at UserProfileComponent (user-profile.component.ts:28:12)",
+    "fix": "API or async data not loaded yet. Guard in template: *ngIf=\"user\" so the block only renders when user exists. In class: user?.userId or if (this.user) { ... }. Initialize or fetch user before binding.",
+    "tags": ["angular", "data", "async"],
+    "timeLost": 20,
+    "createdAt": 1709604800000
+  },
+  {
+    "errorMessage": "Warning: Can't perform a React state update on an unmounted component. This is a no-op but indicates a memory leak.",
+    "fix": "A setState (or async callback) ran after unmount. Cancel the effect: in useEffect return a cleanup that sets a cancelled flag or aborts an AbortController, and check it before setState. For fetch: use AbortController and abort in cleanup.",
+    "tags": ["react", "async", "memory-leak"],
+    "timeLost": 30,
+    "createdAt": 1709691200000
+  },
+  {
+    "errorMessage": "Error: Objects are not valid as a React child (found: object with keys {id, name}). If you meant to render a collection, use an array instead.",
+    "fix": "You passed an object to JSX (e.g. {user} instead of {user.name}). React can only render primitives, arrays, or elements. Render a property like user.name or user.id, or map an array of items.",
+    "tags": ["react", "data"],
+    "timeLost": 10,
+    "createdAt": 1709777600000
+  },
+  {
+    "errorMessage": "Http failure response for (unknown url): 0 Unknown Error\n  at HttpClient (Angular)",
+    "fix": "Often CORS or network: request blocked by browser. Backend must send Access-Control-Allow-Origin (or proxy in dev). For Angular dev: add proxy in angular.json or use a proxy config. Also check URL is correct and server is running.",
+    "tags": ["angular", "http", "cors", "api"],
+    "timeLost": 50,
+    "createdAt": 1709864000000
+  },
+  {
+    "errorMessage": "Unhandled Promise Rejection: TypeError: Failed to fetch\n  at fetchData (api.js:14:1)",
+    "fix": "Network error or CORS. Add try/catch and .catch() on the promise. Check: URL correct, server up, CORS headers on API. For dev use a proxy or ensure backend allows the origin.",
+    "tags": ["javascript", "api", "fetch", "async"],
+    "timeLost": 25,
+    "createdAt": 1709950400000
+  },
+  {
+    "errorMessage": "Error: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have the correct dependency array, or one of the dependencies changes on every render.",
+    "fix": "Infinite loop: an effect depends on an object/array/function recreated every render. Use stable deps: put objects in useMemo, functions in useCallback, or depend on primitives. Don't set state in an effect with a dep that always changes.",
+    "tags": ["react", "useEffect", "state"],
+    "timeLost": 40,
+    "createdAt": 1710036800000
+  },
+  {
+    "errorMessage": "NullInjectorError: R3InjectorError(AppModule)[UserService -> UserService -> UserService]: NullInjectorError: No provider for UserService!",
+    "fix": "Angular can't inject UserService. Add it to a provider: @Injectable() on the service and provide it in a module (providers: [UserService]) or in a component's providers array. If it should be app-wide, put it in AppModule or a core module.",
+    "tags": ["angular", "dependency-injection"],
+    "timeLost": 20,
+    "createdAt": 1710123200000
+  },
+  {
+    "errorMessage": "Uncaught (in promise) Error: A cross-origin resource sharing (CORS) policy blocks the request: No 'Access-Control-Allow-Origin' header.",
+    "fix": "Backend must send CORS headers (e.g. Access-Control-Allow-Origin: * or your origin). In dev you can use a proxy (Vite proxy, webpack devServer.proxy, or Angular proxy) so the browser talks to same origin.",
+    "tags": ["api", "cors", "fetch"],
+    "timeLost": 35,
+    "createdAt": 1710209600000
+  }
+]
