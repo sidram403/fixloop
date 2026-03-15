@@ -9,6 +9,7 @@ import SearchLogs from './pages/SearchLogs'
 import AllLogs from './pages/AllLogs'
 import { seedIfEmpty } from './db/db'
 import samples from './data/samples.json'
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const [showSampleBanner, setShowSampleBanner] = useState(false)
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/search" element={<SearchLogs />} />
         <Route path="/logs" element={<AllLogs />} />
       </Routes>
+      <Analytics />
     </Layout>
   )
 }

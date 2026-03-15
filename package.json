@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/geist-sans": "^5.2.5",
+    "@vercel/analytics": "^2.0.1",
     "dexie": "^4.0.0",
     "fuse.js": "^7.0.0",
     "lucide-react": "^0.460.0",
